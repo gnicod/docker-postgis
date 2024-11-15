@@ -18,12 +18,11 @@ RUN install_packages wget gcc make build-essential libxml2-dev libgeos-dev libpr
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/postgis*
 
-RUN echo '-- Enable PostGIS (includes raster)\n\
-CREATE EXTENSION postgis;\n\
--- Enable Topology\n\
-CREATE EXTENSION postgis_topology;\n\
-' >> activate_postgis.sql \
-    && sed -i 's;postgresql_custom_init_scripts;info "Activating PostGIS extensions"\ncp activate_postgis.sql docker-entrypoint-initdb.d/\npostgresql_custom_init_scripts;g' setup.sh
+# Create initialization script
+RUN mkdir -p /docker-entrypoint-initdb.d && \
+    echo 'CREATE EXTENSION IF NOT EXISTS postgis;' > /docker-entrypoint-initdb.d/enable_postgis.sql
 
+# Set proper permissions
+RUN chown -R 1001:1001 /docker-entrypoint-initdb.d
 
 USER 1001

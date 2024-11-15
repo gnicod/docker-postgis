@@ -4,7 +4,7 @@ USER root
 
 ENV POSTGIS_VERSION=3.5.0
 
-RUN install_packages wget gcc make build-essential libxml2-dev libgeos-dev libproj-dev libgdal-dev protobuf-c-compiler \
+RUN install_packages wget gcc make build-essential libxml2-dev libgeos-dev libproj-dev libgdal-dev protobuf-c-compiler libproj15 \
     && cd /tmp \
     && wget "http://download.osgeo.org/postgis/source/postgis-${POSTGIS_VERSION}.tar.gz" \
     && export C_INCLUDE_PATH=/opt/bitnami/postgresql/include/:/opt/bitnami/common/include/ \
@@ -25,4 +25,3 @@ RUN mkdir -p /docker-entrypoint-initdb.d && \
 # Set proper permissions
 RUN chown -R 1001:1001 /docker-entrypoint-initdb.d
 
-USER 1001

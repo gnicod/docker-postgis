@@ -1,10 +1,10 @@
-FROM bitnami/postgresql:13.17.0
+FROM bitnami/postgresql:17
 
 USER root
 
 ENV POSTGIS_VERSION=3.5.0
 
-RUN install_packages wget gcc make build-essential libxml2-dev libgeos-dev libproj-dev libgdal-dev protobuf-c-compiler libproj15 \
+RUN install_packages wget gcc make build-essential libxml2-dev libgeos-dev libproj-dev libgdal-dev protobuf-c-compiler  \
     && cd /tmp \
     && wget "http://download.osgeo.org/postgis/source/postgis-${POSTGIS_VERSION}.tar.gz" \
     && export C_INCLUDE_PATH=/opt/bitnami/postgresql/include/:/opt/bitnami/common/include/ \

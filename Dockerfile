@@ -22,8 +22,6 @@ RUN install_packages \
     postgresql-server-dev-all \
     gdal-bin \
     libgeos++-dev \
-    liblwgeom-dev \
-    # Keep proj-related packages
     proj-bin \
     proj-data
 

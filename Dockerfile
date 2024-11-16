@@ -59,8 +59,7 @@ RUN apt-get remove --purge --auto-remove -y \
 RUN install_packages \
     libgeos-c1v5 \
     libproj-dev \
-    proj-data \
-    libgdal30
+    proj-data
 
 # Create initialization script
 RUN mkdir -p /docker-entrypoint-initdb.d \
